@@ -239,7 +239,7 @@ void print_rss(msg_t *msg)
         /* Tell GNRC you are done with this packet so it can release the memory */
         gnrc_pktbuf_release(pkt);
 
-        printf(rssi - CC2538_RSSI_OFFSET); 
+        printf ("rss: %d", rssi - CC2538_RSSI_OFFSET); 
     }
 
 }
@@ -255,6 +255,6 @@ void print_prr(uint32_t pkt_rcv, uint32_t num_pkts)
      * and print it out 
      */
 
-    printf(((double)pkt_rcv)/((double)num_pkts)); 
+    printf ("prr: %d", ((float) pkt_rcv)/((float)num_pkts)); 
 
 }
