@@ -238,7 +238,7 @@ void print_rss(msg_t *msg)
 
         /* Tell GNRC you are done with this packet so it can release the memory */
 
-        printf ("rss: %f\n", hdr->rssi - CC2538_RSSI_OFFSET);
+        printf ("rss: %d\n", hdr->rssi - CC2538_RSSI_OFFSET);
         gnrc_pktbuf_release(pkt);
     }
 }
