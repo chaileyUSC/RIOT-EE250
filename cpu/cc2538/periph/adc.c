@@ -44,7 +44,7 @@ int adc_init(adc_t line)
     adca->ADCCON2 = 0x0;
     /* configure ADC GPIO as analog input */
     gpio_init(adc_config[line], GPIO_IN_ANALOG);
-    gpio_init(GPIO_PIN(PORT_D,2), GPIO_OD); 
+    gpio_init(GPIO_PIN(PORT_D,2), GPIO_OUT); 
 
 
     return 0;
