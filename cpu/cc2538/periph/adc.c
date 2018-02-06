@@ -25,6 +25,7 @@
 #include "periph_conf.h"
 #include "periph_cpu.h"
 #include "periph/adc.h"
+#include "periph_conf.h"
 
 #define ENABLE_DEBUG (0)
 #include "debug.h"
@@ -43,6 +44,8 @@ int adc_init(adc_t line)
     adca->ADCCON2 = 0x0;
     /* configure ADC GPIO as analog input */
     gpio_init(adc_config[line], GPIO_IN_ANALOG);
+    gpio_init(GPIO_PIN(PORT_D,2), GPIO_OD); 
+    gpio_set(GPIO_PIN(PORT_D,2)); 
 
     return 0;
 }
@@ -90,6 +93,7 @@ int adc_sample(adc_t line, adc_res_t res)
     while ((adca->cc2538_adc_adccon1.ADCCON1 &
             SOC_ADC_ADCCON1_EOC_MASK) == 0) {}
 
+    gpio_clear(GPIO_PIN(PORT_D,2)); 
     /* Read result after conversion completed,
      * reading SOC_ADC_ADCH last will clear SOC_ADC_ADCCON1.EOC */
     int16_t sample = adca->ADCL & SOC_ADC_ADCL_MASK;
